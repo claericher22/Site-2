@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QueenClaa Books — Aperçu des thèmes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════
+   VARIABLES THÈME
+══════════════════════════════════ */
+:root {
+  --teal:       #00ffab;
+  --teal-dark:  #00c98a;
+  --teal-deep:  #007a55;
+  --teal-light: #7fffda;
+  --teal-pale:  #b3ffe3;
+  --teal-glow:  rgba(0,255,171,0.15);
+  --blue:       #00d4ff;
+  --blue-dark:  #0088bb;
+}
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+/* ══════════════════════════════════
+   SWITCHER FIXE
+══════════════════════════════════ */
+.switcher {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
+  display: flex; flex-direction: column; gap: .6rem;
+}
+.sw-btn {
+  padding: .6rem 1.2rem; border-radius: 30px; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500;
+  transition: all .3s; white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.sw-dark  { background: #0a0a0a; color: var(--teal); border: 1px solid var(--teal); }
+.sw-white { background: #fff; color: var(--teal-deep); border: 1px solid var(--teal-deep); }
+.sw-btn.active { box-shadow: 0 4px 20px rgba(0,255,171,0.4); transform: scale(1.04); }
+
+/* ══════════════════════════════════
+   THÈME SOMBRE
+══════════════════════════════════ */
+.theme-dark {
+  --bg:         #060a0d;
+  --bg2:        #0c1218;
+  --card:       #0f1a20;
+  --card2:      #111f28;
+  --border:     rgba(0,255,171,0.1);
+  --text:       #e8f5ef;
+  --muted:      #5a8a72;
+  --surface:    rgba(0,255,171,0.05);
+}
+
+/* THÈME CLAIR */
+.theme-light {
+  --bg:         #f0fdf8;
+  --bg2:        #e6faf2;
+  --card:       #ffffff;
+  --card2:      #f5fef9;
+  --border:     rgba(0,150,100,0.12);
+  --text:       #0a2018;
+  --muted:      #3a7a5a;
+  --surface:    rgba(0,200,140,0.06);
+}
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  transition: background .5s;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: .5rem; text-decoration: none;
+}
+.nav-logo .logo-accent { color: var(--teal); font-style: italic; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--muted);
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-cart {
+  background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .5rem 1.3rem; border-radius: 30px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600;
+  display: flex; align-items: center; gap: .4rem;
+  transition: all .3s; box-shadow: 0 0 20px rgba(0,255,171,0.3);
+}
+.nav-cart:hover { background: var(--teal-light); box-shadow: 0 0 30px rgba(0,255,171,0.5); }
+.cart-badge {
+  background: #000; color: var(--teal); border-radius: 50%;
+  width: 17px; height: 17px; font-size: 0.65rem; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 7rem 3rem 4rem;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+  transition: background .5s;
+}
+.hero-orb1 {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,255,171,0.08) 0%, transparent 70%);
+  top: -150px; right: -200px; animation: breathe 8s ease-in-out infinite;
+}
+.hero-orb2 {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+  bottom: -100px; left: -100px; animation: breathe 11s ease-in-out infinite reverse;
+}
+.hero-grid-line {
+  position: absolute; inset: 0; pointer-events: none; opacity: .03;
+  background-image:
+    linear-gradient(var(--teal) 1px, transparent 1px),
+    linear-gradient(90deg, var(--teal) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+@keyframes breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; max-width: 1200px; margin: 0 auto;
+  align-items: center; position: relative; z-index: 1; width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 1.4rem;
+  border: 1px solid rgba(0,255,171,0.25);
+  padding: .3rem .9rem; border-radius: 20px;
+  background: rgba(0,255,171,0.06);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 900; line-height: 1.05; color: var(--text);
+  margin-bottom: 1.2rem; transition: color .5s;
+}
+.hero h1 .ht {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: .98rem; color: var(--muted); line-height: 1.8;
+  margin-bottom: 2rem; font-weight: 300;
+  transition: color .5s;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-teal {
+  background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .8rem 2rem; border-radius: 40px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; transition: all .3s; display: inline-block;
+  box-shadow: 0 4px 20px rgba(0,255,171,0.3);
+}
+.btn-teal:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,255,171,0.45); }
+.btn-outline-teal {
+  background: transparent; color: var(--teal);
+  border: 1px solid rgba(0,255,171,0.35); cursor: pointer;
+  padding: .8rem 2rem; border-radius: 40px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+  text-decoration: none; transition: all .3s; display: inline-block;
+}
+.btn-outline-teal:hover { background: rgba(0,255,171,0.08); border-color: var(--teal); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 2.5rem;
+  padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.s-num {
+  font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; display: block;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.s-lbl { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* BOOK VISUAL */
+.hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+.book-float {
+  width: 200px; height: 280px; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,255,171,0.15);
+  position: relative; overflow: hidden; font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.9); text-align: center; padding: 1.2rem;
+  animation: floatBook 5s ease-in-out infinite;
+}
+@keyframes floatBook { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-12px) rotate(-2deg)} }
+.book-float::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(0,255,171,0.15) 0%, transparent 60%);
+}
+.bf1 { background: linear-gradient(145deg, #0a2030, #0d3a28); }
+.bf2 { background: linear-gradient(145deg, #0a1a30, #0d2840); transform: rotate(5deg) translate(50px, -20px); z-index: -1; width: 180px; height: 250px; opacity: .6; animation-delay: .5s; }
+.bf3 { background: linear-gradient(145deg, #1a0a30, #2d0a40); transform: rotate(-8deg) translate(-60px, 15px); z-index: -2; width: 170px; height: 240px; opacity: .4; animation-delay: 1s; }
+.book-glow-ring {
+  position: absolute; width: 320px; height: 320px; border-radius: 50%;
+  border: 1px solid rgba(0,255,171,0.15); top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: spin 15s linear infinite;
+}
+.book-glow-ring::before {
+  content: '✦'; color: var(--teal); font-size: .8rem;
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+}
+@keyframes spin { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
+.float-chip {
+  position: absolute; z-index: 10;
+  background: rgba(0,255,171,0.12); border: 1px solid rgba(0,255,171,0.3);
+  color: var(--teal); border-radius: 12px; padding: .5rem 1rem; font-size: 0.75rem;
+  backdrop-filter: blur(10px); animation: floatBook 4s ease-in-out infinite;
+}
+.fc1 { top: 10px; right: -30px; animation-delay: 0s; }
+.fc2 { bottom: 40px; left: -40px; animation-delay: 2s; }
+
+/* ══════════════════════════════════
+   BOOKS GRID
+══════════════════════════════════ */
+.books-section {
+  padding: 6rem 3rem;
+  background: var(--bg2);
+  position: relative; transition: background .5s;
+}
+.books-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), var(--blue), transparent);
+}
+.section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: .8rem; text-align: center; }
+.section-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--text);
+  text-align: center; margin-bottom: .4rem; transition: color .5s;
+}
+.section-h2 em { font-style: italic; color: var(--teal-dark); }
+.section-sub { color: var(--muted); font-size: 0.88rem; text-align: center; margin-bottom: 3.5rem; }
+.divider-t {
+  width: 60px; height: 2px; margin: .8rem auto 1.5rem;
+  background: linear-gradient(90deg, var(--teal), var(--blue)); border-radius: 2px;
+}
+
+.books-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem; max-width: 1200px; margin: 0 auto;
+}
+.book-card {
+  background: var(--card); border-radius: 18px;
+  border: 1px solid var(--border);
+  overflow: hidden; transition: transform .35s, border-color .35s, box-shadow .35s;
+}
+.book-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(0,255,171,0.35);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(0,255,171,0.1);
+}
+.book-cover {
+  width: 100%; aspect-ratio: 2/3;
+  position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.book-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.book-card:hover .book-cover img { transform: scale(1.06); }
+.book-cover-ph {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
+}
+.cp1 { background: linear-gradient(160deg, #071a28, #0d3a28); }
+.cp2 { background: linear-gradient(160deg, #071528, #0a2d40); }
+.cp3 { background: linear-gradient(160deg, #0d1a07, #1a3a0d); }
+.cp4 { background: linear-gradient(160deg, #1a0d07, #3a1a0d); }
+.cover-em { font-size: 2.8rem; }
+.cover-tl {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1rem; color: rgba(255,255,255,.8); text-align: center; padding: 0 .8rem; line-height: 1.3;
+}
+.cover-glow {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+  background: linear-gradient(to top, rgba(0,255,171,0.12) 0%, transparent 100%);
+  pointer-events: none;
+}
+.bk-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: .22rem .65rem; border-radius: 15px; font-weight: 600;
+}
+.b-hot { background: rgba(0,255,171,0.15); color: var(--teal); border: 1px solid rgba(0,255,171,0.3); }
+.b-new { background: rgba(0,212,255,0.15); color: var(--blue); border: 1px solid rgba(0,212,255,0.3); }
+.b-dark { background: rgba(0,100,70,0.2); color: var(--teal-pale); border: 1px solid rgba(0,255,171,0.15); }
+.book-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,20,15,0.85) 0%, transparent 50%);
+  opacity: 0; transition: opacity .3s;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.2rem;
+}
+.book-card:hover .book-overlay { opacity: 1; }
+.btn-quick {
+  background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .45rem 1.2rem; border-radius: 25px; font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem; font-weight: 600; transition: all .2s;
+}
+.btn-quick:hover { background: var(--teal-light); transform: scale(1.05); }
+
+.book-info { padding: 1.1rem 1.2rem 1.3rem; }
+.bk-type { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: .3rem; }
+.bk-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700; color: var(--text);
+  margin-bottom: .5rem; line-height: 1.3; transition: color .5s;
+}
+.bk-synopsis {
+  font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: .9rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  font-weight: 300;
+}
+.bk-fmts { display: flex; gap: .4rem; margin-bottom: .9rem; }
+.ft { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: .18rem .55rem; border-radius: 12px; font-weight: 500; }
+.ft-pdf { background: rgba(0,255,171,0.08); color: var(--teal); border: 1px solid rgba(0,255,171,0.2); }
+.ft-paper { background: rgba(0,212,255,0.08); color: var(--blue); border: 1px solid rgba(0,212,255,0.2); }
+.bk-foot { display: flex; align-items: center; justify-content: space-between; }
+.bk-price-from { font-size: 0.68rem; color: var(--muted); }
+.bk-price-val { font-size: 1.05rem; font-weight: 700; color: var(--text); transition: color .5s; }
+.btn-order {
+  background: transparent; color: var(--teal); border: 1px solid rgba(0,255,171,0.3);
+  cursor: pointer; padding: .4rem 1rem; border-radius: 20px; font-size: 0.73rem;
+  font-family: 'DM Sans', sans-serif; font-weight: 500; transition: all .25s;
+}
+.btn-order:hover { background: var(--teal); color: #000; }
+
+/* ══════════════════════════════════
+   ABOUT
+══════════════════════════════════ */
+.about-section {
+  padding: 6rem 3rem; background: var(--bg);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  transition: background .5s;
+}
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; max-width: 1100px; margin: 0 auto; align-items: center; }
+.about-visual { display: flex; justify-content: center; position: relative; }
+.av-ring {
+  position: absolute; width: 260px; height: 260px; border-radius: 50%;
+  border: 1px dashed rgba(0,255,171,0.2); top: 50%; left: 50%;
+  transform: translate(-50%,-50%); animation: spin 20s linear infinite;
+}
+.av-ring::before { content: '✦'; color: var(--teal); font-size: .8rem; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); }
+.av-img {
+  width: 200px; height: 200px; border-radius: 50%; position: relative; z-index: 1;
+  border: 2px solid rgba(0,255,171,0.35);
+  box-shadow: 0 0 40px rgba(0,255,171,0.2), 0 20px 60px rgba(0,0,0,0.3);
+  object-fit: cover;
+}
+.av-glow {
+  position: absolute; width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,171,0.2) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  animation: breathe 5s ease-in-out infinite;
+}
+.about-text .section-label { text-align: left; margin-bottom: .8rem; }
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem; line-height: 1.15; transition: color .5s;
+}
+.about-text h2 em { font-style: italic; color: var(--teal); }
+.about-text p { font-size: .9rem; color: var(--muted); line-height: 1.85; margin-bottom: .9rem; font-weight: 300; transition: color .5s; }
+.about-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0 1.6rem; }
+.atag {
+  font-size: 0.7rem; padding: .28rem .75rem; border-radius: 20px;
+  border: 1px solid rgba(0,255,171,0.2); color: var(--teal);
+  background: rgba(0,255,171,0.06);
+}
+.socials { display: flex; gap: .8rem; flex-wrap: wrap; }
+.soc-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .5rem 1.1rem; border-radius: 25px; font-size: 0.76rem;
+  text-decoration: none; transition: all .3s; font-weight: 500;
+}
+.soc-wp { background: rgba(0,255,171,0.08); color: var(--teal); border: 1px solid rgba(0,255,171,0.2); }
+.soc-wp:hover { background: rgba(0,255,171,0.18); }
+.soc-ig { background: rgba(0,212,255,0.08); color: var(--blue); border: 1px solid rgba(0,212,255,0.2); }
+.soc-ig:hover { background: rgba(0,212,255,0.18); }
+
+/* ══════════════════════════════════
+   FORMATS
+══════════════════════════════════ */
+.formats-section { padding: 5rem 3rem; background: var(--bg2); transition: background .5s; }
+.formats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 860px; margin: 0 auto; }
+.fmt-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 2.3rem; text-align: center;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.fmt-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,255,171,0.3);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2), 0 0 20px rgba(0,255,171,0.08);
+}
+.fmt-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.fmt-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; transition: color .5s; }
+.fmt-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.3rem; font-weight: 300; }
+.fmt-price {
+  display: inline-block; margin-bottom: 1.4rem;
+  background: rgba(0,255,171,0.08); border: 1px solid rgba(0,255,171,0.2);
+  border-radius: 25px; padding: .35rem 1.1rem; font-size: 0.82rem; color: var(--teal);
+}
+.fmt-feats { list-style: none; text-align: left; }
+.fmt-feats li {
+  color: var(--muted); font-size: 0.81rem; padding: .45rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: .7rem; transition: color .5s;
+}
+.fmt-feats li::before { content: '✦'; color: var(--teal); font-size: 0.58rem; flex-shrink: 0; }
+
+/* ══════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════ */
+.testi-section { padding: 5rem 3rem; background: var(--bg); border-top: 1px solid var(--border); transition: background .5s; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.testi-card {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.8rem; transition: border-color .3s;
+}
+.testi-card:hover { border-color: rgba(0,255,171,0.25); }
+.tc-stars { color: var(--teal); font-size: 0.72rem; letter-spacing: 3px; margin-bottom: .9rem; }
+.tc-text { font-size: 0.85rem; color: var(--muted); line-height: 1.75; font-style: italic; margin-bottom: 1rem; font-weight: 300; transition: color .5s; }
+.tc-book { font-size: 0.7rem; color: var(--teal-dark); margin-bottom: .9rem; }
+.tc-author { display: flex; align-items: center; gap: .7rem; }
+.tc-av {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: .95rem;
+  background: linear-gradient(135deg, var(--teal-deep), var(--blue-dark));
+  color: #fff; border: 1px solid rgba(0,255,171,0.3);
+}
+.tc-name { font-size: 0.82rem; font-weight: 500; color: var(--text); transition: color .5s; }
+.tc-from { font-size: 0.68rem; color: var(--muted); }
+
+/* ══════════════════════════════════
+   NEWSLETTER
+══════════════════════════════════ */
+.nl-section {
+  padding: 5rem 3rem; text-align: center; background: var(--bg2);
+  position: relative; overflow: hidden; transition: background .5s;
+}
+.nl-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(0,255,171,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.nl-inner { max-width: 520px; margin: 0 auto; position: relative; }
+.nl-inner h2 { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; transition: color .5s; }
+.nl-inner h2 em { font-style: italic; color: var(--teal); }
+.nl-inner p { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.8rem; transition: color .5s; }
+.nl-form { display: flex; gap: .7rem; max-width: 400px; margin: 0 auto; }
+.nl-form input {
+  flex: 1; padding: .75rem 1.2rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 35px; font-family: 'DM Sans', sans-serif; font-size: 0.83rem;
+  color: var(--text); outline: none; transition: border-color .3s, background .5s, color .5s;
+}
+.nl-form input:focus { border-color: rgba(0,255,171,0.5); }
+.nl-form input::placeholder { color: var(--muted); }
+.nl-form button {
+  background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .75rem 1.4rem; border-radius: 35px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600;
+  white-space: nowrap; transition: all .3s;
+  box-shadow: 0 4px 20px rgba(0,255,171,0.3);
+}
+.nl-form button:hover { background: var(--teal-light); box-shadow: 0 4px 25px rgba(0,255,171,0.5); }
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+footer {
+  padding: 3rem 3rem 1.8rem;
+  background: var(--bg); border-top: 1px solid var(--border);
+  transition: background .5s;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; max-width: 1200px; margin: 0 auto 2rem; }
+.fb-brand h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--text); margin-bottom: .5rem; transition: color .5s; }
+.fb-brand h3 span { color: var(--teal); font-style: italic; }
+.fb-brand p { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+.fb-brand .mq { margin-top: .6rem; font-size: 0.72rem; color: var(--teal-dark); }
+.fc-col h4 { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); margin-bottom: .9rem; transition: color .5s; }
+.fc-col ul { list-style: none; }
+.fc-col ul li { margin-bottom: .5rem; }
+.fc-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: color .3s; }
+.fc-col ul li a:hover { color: var(--teal); }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 1.3rem; text-align: center; font-size: 0.73rem; color: var(--muted); max-width: 1200px; margin: 0 auto; }
+
+/* ══════════════════════════════════
+   MODAL
+══════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--card); border: 1px solid rgba(0,255,171,0.2);
+  border-radius: 24px; padding: 2.3rem; max-width: 480px; width: 92%;
+  position: relative; animation: popIn .35s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(0,255,171,0.08);
+}
+@keyframes popIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+.modal-x { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--muted); transition: color .3s; }
+.modal-x:hover { color: var(--teal); }
+.modal-prev { width: 75px; height: 100px; border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.modal h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; color: var(--text); margin-bottom: .2rem; transition: color .5s; }
+.modal-type { font-size: 0.7rem; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: .8rem; }
+.modal-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.4rem; font-weight: 300; }
+.modal-opts { display: flex; gap: .7rem; flex-direction: column; }
+.modal-opt {
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: .95rem 1.2rem; cursor: pointer; transition: all .25s;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(0,255,171,0.02);
+}
+.modal-opt:hover { border-color: rgba(0,255,171,0.4); background: rgba(0,255,171,0.05); }
+.modal-opt.sel { border-color: var(--teal); background: rgba(0,255,171,0.07); }
+.opt-lbl { font-size: 0.86rem; font-weight: 500; color: var(--text); transition: color .5s; }
+.opt-sub { font-size: 0.7rem; color: var(--muted); }
+.opt-px { font-size: 1rem; font-weight: 700; color: var(--teal); margin-left: 1rem; flex-shrink: 0; }
+.modal-btn {
+  width: 100%; margin-top: 1.4rem;
+  background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .9rem; border-radius: 35px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+  transition: all .3s; box-shadow: 0 6px 25px rgba(0,255,171,0.3);
+}
+.modal-btn:hover { background: var(--teal-light); box-shadow: 0 8px 30px rgba(0,255,171,0.45); }
+
+/* ══════════════════════════════════
+   CART
+══════════════════════════════════ */
+.cart-over { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); }
+.cart-over.active { display: block; }
+.cart-side {
+  position: fixed; top: 0; right: 0; height: 100%; width: 370px; max-width: 95vw;
+  background: var(--card); border-left: 1px solid rgba(0,255,171,0.15); z-index: 301;
+  transform: translateX(100%); transition: transform .4s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+}
+.cart-side.open { transform: translateX(0); }
+.ch { padding: 1.4rem 1.7rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.ch h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text); transition: color .5s; }
+.cx { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--muted); transition: color .3s; }
+.cx:hover { color: var(--teal); }
+.cb { flex: 1; overflow-y: auto; padding: 1.1rem 1.7rem; }
+.ce { text-align: center; padding: 3rem 0; color: var(--muted); font-style: italic; font-size: 0.88rem; }
+.ci { display: flex; gap: .9rem; align-items: flex-start; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+.ci-thumb { width: 48px; height: 65px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.ci-inf { flex: 1; min-width: 0; }
+.ci-t { font-size: 0.86rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .5s; }
+.ci-f { font-size: 0.68rem; color: var(--teal); text-transform: uppercase; letter-spacing: .07em; margin: .15rem 0; }
+.ci-p { font-size: 0.86rem; color: var(--muted); }
+.ci-rm { background: none; border: none; cursor: pointer; color: var(--muted); font-size: .85rem; transition: color .3s; flex-shrink: 0; padding: .2rem; }
+.ci-rm:hover { color: var(--teal); }
+.cf { padding: 1.4rem 1.7rem; border-top: 1px solid var(--border); }
+.ct { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem; }
+.ct span:first-child { font-size: 0.78rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.ct span:last-child { font-size: 1.25rem; font-weight: 700; color: var(--text); transition: color .5s; }
+.btn-pay {
+  width: 100%; background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .95rem; border-radius: 35px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+  transition: all .3s; box-shadow: 0 4px 20px rgba(0,255,171,0.3);
+}
+.btn-pay:hover { background: var(--teal-light); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--card); border: 1px solid rgba(0,255,171,0.3);
+  color: var(--text); padding: .75rem 1.6rem; border-radius: 35px;
+  font-size: 0.82rem; opacity: 0; transition: all .4s; z-index: 500;
+  pointer-events: none; white-space: nowrap; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ══════════════════════════════════
+   BETA-LECTURE
+══════════════════════════════════ */
+.beta-section {
+  padding: 6rem 3rem;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  transition: background .5s;
+  position: relative; overflow: hidden;
+}
+.beta-section::after {
+  content: 'β';
+  position: absolute; right: -2rem; bottom: -3rem;
+  font-size: 18rem; font-weight: 900; opacity: .025;
+  color: var(--teal); pointer-events: none;
+  font-family: 'Playfair Display', serif;
+}
+.beta-intro {
+  max-width: 700px; margin: 0 auto 3.5rem; text-align: center;
+}
+.beta-intro p { color: var(--muted); font-size: .92rem; line-height: 1.8; font-weight: 300; }
+.beta-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; max-width: 1100px; margin: 0 auto 3rem;
+}
+.beta-card {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 18px; padding: 1.8rem;
+  transition: transform .3s, border-color .3s;
+  position: relative; overflow: hidden;
+}
+.beta-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  opacity: 0; transition: opacity .3s;
+}
+.beta-card:hover { transform: translateY(-4px); border-color: rgba(0,255,171,0.25); }
+.beta-card:hover::before { opacity: 1; }
+.beta-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.beta-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700; color: var(--text);
+  margin-bottom: .5rem; transition: color .5s;
+}
+.beta-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+.beta-card .beta-tag {
+  display: inline-block; margin-top: .9rem;
+  font-size: 0.68rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .2rem .65rem; border-radius: 12px;
+  background: rgba(0,255,171,0.08); color: var(--teal);
+  border: 1px solid rgba(0,255,171,0.2);
+}
+.beta-cta-box {
+  max-width: 680px; margin: 0 auto;
+  background: var(--card); border: 1px solid rgba(0,255,171,0.2);
+  border-radius: 20px; padding: 2.5rem;
+  text-align: center; position: relative; overflow: hidden;
+}
+.beta-cta-box::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,255,171,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.beta-cta-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem; font-weight: 700; color: var(--text);
+  margin-bottom: .6rem; transition: color .5s;
+}
+.beta-cta-box h3 em { font-style: italic; color: var(--teal); }
+.beta-cta-box p { color: var(--muted); font-size: .88rem; line-height: 1.7; margin-bottom: 1.6rem; font-weight: 300; }
+.beta-form { display: flex; flex-direction: column; gap: .9rem; max-width: 420px; margin: 0 auto; }
+.beta-form input, .beta-form select, .beta-form textarea {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 12px; padding: .75rem 1.1rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+  color: var(--text); outline: none; transition: border-color .3s, background .5s, color .5s;
+  width: 100%;
+}
+.beta-form input:focus, .beta-form select:focus, .beta-form textarea:focus { border-color: rgba(0,255,171,0.5); }
+.beta-form input::placeholder, .beta-form textarea::placeholder { color: var(--muted); }
+.beta-form select option { background: #111; color: #eee; }
+.beta-form textarea { resize: vertical; min-height: 90px; }
+.beta-form button {
+  background: var(--teal); color: #000; border: none; cursor: pointer;
+  padding: .85rem; border-radius: 35px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+  transition: all .3s; box-shadow: 0 4px 20px rgba(0,255,171,0.3);
+}
+.beta-form button:hover { background: var(--teal-light); box-shadow: 0 6px 28px rgba(0,255,171,0.45); }
+@media (max-width: 700px) {
+  .beta-grid { grid-template-columns: 1fr; }
+  .beta-section { padding: 4rem 1.2rem; }
+}
+
+
+
+@media (max-width: 1000px) {
+  .books-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 6rem 1.2rem 3rem; }
+  .hero-inner, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-visual { display: none; }
+  .books-section, .about-section, .formats-section, .testi-section, .nl-section { padding: 4rem 1.2rem; }
+  .books-grid, .formats-grid, .testi-grid, .footer-grid { grid-template-columns: 1fr; }
+  footer { padding: 2.5rem 1.2rem 1.5rem; }
+  .nl-form { flex-direction: column; }
+  .switcher { bottom: 1rem; right: 1rem; }
+}
+</style>
+</head>
+<body class="theme-dark" id="body">
+
+<!-- SWITCHER -->
+<div class="switcher">
+  <button class="sw-btn sw-dark active" id="btnDark" onclick="setTheme('dark')">🌙 Fond sombre</button>
+  <button class="sw-btn sw-white" id="btnLight" onclick="setTheme('light')">☀️ Fond clair</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">👑 Queen<span class="logo-accent">Claa</span> Books 🧋</a>
+  <ul class="nav-links">
+    <li><a href="#livres">Romans</a></li>
+    <li><a href="#about">L'Auteure</a></li>
+    <li><a href="#formats">Formats</a></li>
+    <li><a href="#beta">Bêta-lecture</a></li>
+    <li><a href="#avis">Avis</a></li>
+  </ul>
+  <button class="nav-cart" onclick="openCart()">
+    🛒 Panier <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-grid-line"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">✦ Martinique 🌺 · Romance · Dark Romance</div>
+      <h1>L'amour qui fait<br><span class="ht">frissonner</span> les pages</h1>
+      <p>Bienvenue dans l'univers de <strong>QueenClaa 🧋</strong> — 29 romans publiés, des histoires de passion, de désir, d'ennemis devenus amants. Disponibles en PDF et en format papier.</p>
+      <div class="hero-btns">
+        <a href="#livres" class="btn-teal">Découvrir mes romans</a>
+        <a href="https://www.wattpad.com/user/Claaaabooks" target="_blank" class="btn-outline-teal">Lire sur Wattpad →</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="s-num">29</span><span class="s-lbl">Romans publiés</span></div>
+        <div><span class="s-num">1.8K</span><span class="s-lbl">Abonnés</span></div>
+        <div><span class="s-num">🌺</span><span class="s-lbl">Martinique</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="book-glow-ring"></div>
+      <div style="position:relative">
+        <div class="book-float bf3">Destinée</div>
+        <div class="book-float bf2">Allergic Hearts</div>
+        <div class="book-float bf1">
+          <img src="https://img.wattpad.com/cover/390530133-288-k210255.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;position:absolute;inset:0" onerror="this.remove()">
+          <span style="position:relative">Il A Vu Double 🫦</span>
+        </div>
+        <div class="float-chip fc1">📄 PDF disponible</div>
+        <div class="float-chip fc2">📗 Format papier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVRES -->
+<section class="books-section" id="livres">
+  <div class="reveal">
+    <span class="section-label">✦ Ma bibliothèque</span>
+    <h2 class="section-h2">Mes <em>Romans</em></h2>
+    <div class="divider-t"></div>
+    <p class="section-sub">Chaque histoire, une émotion unique</p>
+  </div>
+  <div class="books-grid">
+
+    <!-- 1. Allergic Hearts -->
+    <div class="book-card reveal">
+      <div class="book-cover">
+        <img src="https://img.wattpad.com/cover/368311018-288-k63828.jpg" alt="Allergic Hearts"
+          onerror="this.parentElement.innerHTML='&lt;div class=&quot;book-cover-ph cp2&quot;&gt;&lt;div class=&quot;cover-em&quot;&gt;💚&lt;/div&gt;&lt;div class=&quot;cover-tl&quot;&gt;Allergic Hearts&lt;/div&gt;&lt;div class=&quot;cover-glow&quot;&gt;&lt;/div&gt;&lt;/div&gt;'">
+        <div class="cover-glow"></div>
+        <span class="bk-badge b-hot">835 lect. · 81 votes</span>
+        <div class="book-overlay"><button class="btn-quick" onclick="openModal(0)">Commander →</button></div>
+      </div>
+      <div class="book-info">
+        <div class="bk-type">Enemies to Lovers · Mariage Arrangé</div>
+        <div class="bk-title">Allergic Hearts 💚</div>
+        <div class="bk-synopsis">Piégés par leurs familles, Talia et Lorenzo se retrouvent liés par un mariage arrangé. Entre passion, cicatrices et secrets, deux âmes brisées dans les bras de leur pire ennemi.</div>
+        <div class="bk-fmts"><span class="ft ft-pdf">📄 PDF</span><span class="ft ft-paper">📗 Papier</span></div>
+        <div class="bk-foot"><div><div class="bk-price-from">À partir de</div><div class="bk-price-val">8,99 €</div></div><button class="btn-order" onclick="openModal(0)">Commander</button></div>
+      </div>
+    </div>
+
+    <!-- 2. Il A Vu Double -->
+    <div class="book-card reveal" style="transition-delay:.08s">
+      <div class="book-cover">
+        <img src="https://img.wattpad.com/cover/390530133-288-k210255.jpg" alt="Il A Vu Double"
+          onerror="this.parentElement.innerHTML='&lt;div class=&quot;book-cover-ph cp1&quot;&gt;&lt;div class=&quot;cover-em&quot;&gt;🫦&lt;/div&gt;&lt;div class=&quot;cover-tl&quot;&gt;Il A Vu Double&lt;/div&gt;&lt;div class=&quot;cover-glow&quot;&gt;&lt;/div&gt;&lt;/div&gt;'">
+        <div class="cover-glow"></div>
+        <span class="bk-badge b-dark">Dark Romance</span>
+        <div class="book-overlay"><button class="btn-quick" onclick="openModal(1)">Commander →</button></div>
+      </div>
+      <div class="book-info">
+        <div class="bk-type">Dark Romance · Mafia</div>
+        <div class="bk-title">Il A Vu Double 🫦</div>
+        <div class="bk-synopsis">Cassia Karras n'a jamais eu droit à l'erreur. Invisible par prudence, irréprochable par devoir. Mais quand il la voit, tout bascule.</div>
+        <div class="bk-fmts"><span class="ft ft-pdf">📄 PDF</span><span class="ft ft-paper">📗 Papier</span></div>
+        <div class="bk-foot"><div><div class="bk-price-from">À partir de</div><div class="bk-price-val">8,99 €</div></div><button class="btn-order" onclick="openModal(1)">Commander</button></div>
+      </div>
+    </div>
+
+    <!-- 3. I Love You Back -->
+    <div class="book-card reveal" style="transition-delay:.16s">
+      <div class="book-cover">
+        <img src="https://img.wattpad.com/cover/163426469-288-k620960.jpg" alt="I Love You Back"
+          onerror="this.parentElement.innerHTML='&lt;div class=&quot;book-cover-ph cp3&quot;&gt;&lt;div class=&quot;cover-em&quot;&gt;🍪&lt;/div&gt;&lt;div class=&quot;cover-tl&quot;&gt;I Love You Back&lt;/div&gt;&lt;div class=&quot;cover-glow&quot;&gt;&lt;/div&gt;&lt;/div&gt;'">
+        <div class="cover-glow"></div>
+        <span class="bk-badge b-hot">2.3K lect. · 136 votes</span>
+        <div class="book-overlay"><button class="btn-quick" onclick="openModal(2)">Commander →</button></div>
+      </div>
+      <div class="book-info">
+        <div class="bk-type">New Adult · Romance Campus</div>
+        <div class="bk-title">I Love You Back 🍪</div>
+        <div class="bk-synopsis">Samantha débarque à New York, prête à se reconstruire. Elle n'avait pas prévu Kyle Hood — arrogant, provocateur, et tout ce qui la trouble. Le pari le plus risqué ? Ne pas se perdre soi-même.</div>
+        <div class="bk-fmts"><span class="ft ft-pdf">📄 PDF</span><span class="ft ft-paper">📗 Papier</span></div>
+        <div class="bk-foot"><div><div class="bk-price-from">À partir de</div><div class="bk-price-val">8,99 €</div></div><button class="btn-order" onclick="openModal(2)">Commander</button></div>
+      </div>
+    </div>
+
+    <!-- 4. Une Main Sans Bague -->
+    <div class="book-card reveal" style="transition-delay:.24s">
+      <div class="book-cover">
+        <img src="https://img.wattpad.com/cover/364870953-288-k521086.jpg" alt="Une Main Sans Bague"
+          onerror="this.parentElement.innerHTML='&lt;div class=&quot;book-cover-ph cp4&quot;&gt;&lt;div class=&quot;cover-em&quot;&gt;💍&lt;/div&gt;&lt;div class=&quot;cover-tl&quot;&gt;Une Main Sans Bague&lt;/div&gt;&lt;div class=&quot;cover-glow&quot;&gt;&lt;/div&gt;&lt;/div&gt;'">
+        <div class="cover-glow"></div>
+        <span class="bk-badge b-hot">1.4K lect. · 92 votes</span>
+        <div class="book-overlay"><button class="btn-quick" onclick="openModal(3)">Commander →</button></div>
+      </div>
+      <div class="book-info">
+        <div class="bk-type">Lovers to Enemies to Lovers</div>
+        <div class="bk-title">Une Main Sans Bague 💍</div>
+        <div class="bk-synopsis">Le divorce de ses parents a déchiré le monde de Chiara Santini. Entre secrets, séduction et trahisons, peut-elle encore faire confiance ? Peut-elle encore aimer ?</div>
+        <div class="bk-fmts"><span class="ft ft-pdf">📄 PDF</span><span class="ft ft-paper">📗 Papier</span></div>
+        <div class="bk-foot"><div><div class="bk-price-from">À partir de</div><div class="bk-price-val">9,99 €</div></div><button class="btn-order" onclick="openModal(3)">Commander</button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="av-glow"></div>
+      <div class="av-ring"></div>
+      <img class="av-img" src="https://img.wattpad.com/useravatar/Claaaabooks.128.261431.jpg" alt="QueenClaa"
+        onerror="this.outerHTML='<div class=\'av-img\' style=\'display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,#007a55,#0088bb)\'>👑</div>'">
+    </div>
+    <div class="about-text reveal">
+      <span class="section-label" style="text-align:left">✦ L'auteure</span>
+      <h2><em>QueenClaa</em> 🧋</h2>
+      <p>Martiniquaise passionnée d'écriture, je publie des romans romance depuis <strong>2017</strong> sur Wattpad où j'ai rassemblé une communauté de <strong>1 800 abonnés fidèles</strong>.</p>
+      <p>Mes univers mêlent passion brûlante, dark romance, mafia et enemies-to-lovers — des histoires qui font battre le cœur et tourner les pages jusqu'à l'aube. <strong>29 romans publiés</strong>, et ce n'est que le début.</p>
+      <div class="about-tags">
+        <span class="atag">Dark Romance</span><span class="atag">Enemies to Lovers</span>
+        <span class="atag">Mafia Romance</span><span class="atag">Martinique 🌺</span>
+        <span class="atag">29 Romans</span>
+      </div>
+      <div class="socials">
+        <a href="https://www.wattpad.com/user/Claaaabooks" target="_blank" class="soc-btn soc-wp">📖 Wattpad</a>
+        <a href="https://instagram.com/claa.books" target="_blank" class="soc-btn soc-ig">📷 @claa.books</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section class="formats-section" id="formats">
+  <div class="reveal">
+    <span class="section-label">✦ Options d'achat</span>
+    <h2 class="section-h2">Choisissez votre <em>Format</em></h2>
+    <div class="divider-t"></div>
+    <p class="section-sub">Lecture numérique ou sensation papier — à vous de choisir</p>
+  </div>
+  <div class="formats-grid reveal">
+    <div class="fmt-card">
+      <div class="fmt-icon">💻</div>
+      <h3>Format Numérique</h3>
+      <p>Téléchargement instantané en PDF dès la confirmation. Compatible avec tous vos appareils.</p>
+      <div class="fmt-price">Dès 7,99 € — Accès immédiat</div>
+      <ul class="fmt-feats">
+        <li>Téléchargement instantané</li>
+        <li>Fichier PDF haute qualité</li>
+        <li>Compatible tablette, liseuse, PC, mobile</li>
+        <li>Envoi par e-mail sécurisé</li>
+        <li>Lecture offline possible</li>
+      </ul>
+    </div>
+    <div class="fmt-card">
+      <div class="fmt-icon">📖</div>
+      <h3>Format Papier</h3>
+      <p>Un vrai livre imprimé avec soin, livré directement chez vous. Idéal pour les collectionneurs.</p>
+      <div class="fmt-price">Dès 12,99 € — Livraison incluse</div>
+      <ul class="fmt-feats">
+        <li>Impression professionnelle</li>
+        <li>Livraison Martinique & DOM-TOM</li>
+        <li>Livraison France & International</li>
+        <li>Dédicace possible sur demande</li>
+        <li>Emballage soigné et sécurisé</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BETA-LECTURE -->
+<section class="beta-section" id="beta">
+  <div class="reveal">
+    <span class="section-label">✦ Rejoindre l'équipe</span>
+    <h2 class="section-h2">Bêta-<em>Lecture</em></h2>
+    <div class="divider-t"></div>
+  </div>
+  <div class="beta-intro reveal">
+    <p>Vous aimez les romans romance et vous souhaitez lire mes histoires en avant-première ? Devenez bêta-lectrice et aidez-moi à peaufiner mes textes avant publication. C'est un échange de confiance — vos retours sont précieux et contribuent directement à la qualité du roman final.</p>
+  </div>
+
+  <div class="beta-grid">
+    <div class="beta-card reveal">
+      <div class="beta-card-icon">📖</div>
+      <h3>Accès anticipé</h3>
+      <p>Lisez les chapitres inédits bien avant leur publication sur Wattpad ou en librairie. Vous êtes parmi les premières à découvrir l'histoire.</p>
+      <span class="beta-tag">Avant-première</span>
+    </div>
+    <div class="beta-card reveal" style="transition-delay:.1s">
+      <div class="beta-card-icon">✍️</div>
+      <h3>Votre avis compte</h3>
+      <p>Cohérence narrative, rythme, dialogues, personnages — vos retours détaillés m'aident à améliorer chaque aspect du roman.</p>
+      <span class="beta-tag">Feedback</span>
+    </div>
+    <div class="beta-card reveal" style="transition-delay:.2s">
+      <div class="beta-card-icon">🧋</div>
+      <h3>Rejoindre la team</h3>
+      <p>Intégrez un groupe de bêta-lectrices passionnées, échangez sur les romans, et soyez créditée dans les remerciements du livre final.</p>
+      <span class="beta-tag">Communauté</span>
+    </div>
+  </div>
+
+  <div class="beta-cta-box reveal">
+    <h3>Postuler en tant que <em>Bêta-lectrice</em></h3>
+    <p>Remplissez le formulaire ci-dessous. Je reviendrai vers vous rapidement pour vous donner accès aux chapitres en cours. Places limitées !</p>
+    <form class="beta-form" id="betaForm">
+      <input type="text" id="betaPseudo" placeholder="Votre prénom / pseudo" required>
+      <input type="email" id="betaEmail" placeholder="Votre e-mail" required>
+      <select id="betaRoman" required>
+        <option value="" disabled selected>Quel roman vous intéresse ?</option>
+        <option>Allergic Hearts 💚 — Enemies to Lovers</option>
+        <option>Il A Vu Double 🫦 — Dark Romance</option>
+        <option>I Love You Back 🍪 — Romance Campus</option>
+        <option>Une Main Sans Bague 💍 — Lovers to Enemies</option>
+        <option>Tous vos romans disponibles</option>
+      </select>
+      <textarea id="betaMessage" placeholder="Pourquoi souhaitez-vous être bêta-lectrice ? (genres préférés, expérience...)"></textarea>
+      <button type="submit" id="betaBtn">Envoyer ma candidature ✦</button>
+    </form>
+    <div id="betaSuccess" style="display:none; margin-top:1.2rem; padding:1rem 1.5rem; background:rgba(0,255,171,0.08); border:1px solid rgba(0,255,171,0.3); border-radius:14px; color:var(--teal); font-size:.88rem; text-align:center;">
+      ✦ Candidature envoyée avec succès ! Je vous contacte bientôt 🧋
+    </div>
+    <div id="betaError" style="display:none; margin-top:1.2rem; padding:1rem 1.5rem; background:rgba(255,80,80,0.08); border:1px solid rgba(255,80,80,0.3); border-radius:14px; color:#ff6060; font-size:.88rem; text-align:center;">
+      Une erreur s'est produite. Merci de réessayer ou de me contacter directement.
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="testi-section" id="avis">
+  <div class="reveal">
+    <span class="section-label">✦ Lectrices</span>
+    <h2 class="section-h2">Ce qu'elles <em>ressentent</em></h2>
+    <div class="divider-t"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">J'ai lu "Allergic Hearts" en une journée, impossible de poser mon téléphone. La tension entre les personnages est INCROYABLE !</p>
+      <div class="tc-book">📖 Allergic Hearts</div>
+      <div class="tc-author"><div class="tc-av">M</div><div><div class="tc-name">Marie-Ange</div><div class="tc-from">Martinique</div></div></div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:.1s">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"Il A Vu Double" m'a complètement obsédée. La dark romance c'est son truc. J'ai commandé la version papier pour ma collection !</p>
+      <div class="tc-book">📖 Il A Vu Double 🫦</div>
+      <div class="tc-author"><div class="tc-av">S</div><div><div class="tc-name">Sarah K.</div><div class="tc-from">Paris</div></div></div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:.2s">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">Je suis abonnée depuis 2019 et chaque roman est meilleur que le précédent. Le PDF arrive immédiatement. Merci QueenClaa 🧋</p>
+      <div class="tc-book">📖 Une Main Sans Bague 💍</div>
+      <div class="tc-author"><div class="tc-av">L</div><div><div class="tc-name">Laury D.</div><div class="tc-from">Guadeloupe</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="nl-section">
+  <div class="nl-inner reveal">
+    <h2>Restez dans <em>mon univers</em> 🧋</h2>
+    <div class="divider-t"></div>
+    <p>Nouvelles sorties, extraits exclusifs et offres spéciales — directement dans votre boîte mail.</p>
+    <form class="nl-form" onsubmit="subscribe(event)">
+      <input type="email" placeholder="votre@email.com" required>
+      <button type="submit">S'inscrire ✦</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="fb-brand">
+      <h3>👑 Queen<span>Claa</span> Books</h3>
+      <p>Romans romance, dark romance et enemies-to-lovers par une auteure martiniquaise passionnée. 29 œuvres depuis 2017.</p>
+      <p class="mq">🌺 Martinique, Terre de Carnaval</p>
+    </div>
+    <div class="fc-col"><h4>Romans</h4><ul><li><a href="#">Il A Vu Double</a></li><li><a href="#">Allergic Hearts</a></li><li><a href="#">Une Main Sans Bague</a></li><li><a href="#">Destinée</a></li></ul></div>
+    <div class="fc-col"><h4>Réseaux</h4><ul><li><a href="https://www.wattpad.com/user/Claaaabooks" target="_blank">Wattpad</a></li><li><a href="https://instagram.com/claa.books" target="_blank">Instagram</a></li><li><a href="https://www.facebook.com/106315550188030" target="_blank">Facebook</a></li><li><a href="https://youtube.com/channel/UCg4YfiQb0M3dJJDwE2ZaJ8A" target="_blank">YouTube</a></li></ul></div>
+    <div class="fc-col"><h4>Infos</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Livraison & retours</a></li><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 QueenClaa Books 🧋 — Tous droits réservés · Martinique 🌺</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOut(event)">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <div class="modal-prev" id="mPrev"></div>
+    <h3 id="mTitle"></h3>
+    <div class="modal-type" id="mType"></div>
+    <p class="modal-desc" id="mDesc"></p>
+    <div class="modal-opts">
+      <div class="modal-opt sel" id="opt-pdf" onclick="selOpt('pdf')">
+        <div><div class="opt-lbl">📄 Format Numérique (PDF)</div><div class="opt-sub">Téléchargement instantané · e-mail sécurisé</div></div>
+        <div class="opt-px" id="pPdf"></div>
+      </div>
+      <div class="modal-opt" id="opt-paper" onclick="selOpt('paper')">
+        <div><div class="opt-lbl">📗 Format Papier</div><div class="opt-sub">Livraison 5–10 jours · Martinique, DOM-TOM, France</div></div>
+        <div class="opt-px" id="pPaper"></div>
+      </div>
+    </div>
+    <button class="modal-btn" onclick="addToCart()">Ajouter au panier ✦</button>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart-over" id="cOver" onclick="closeCart()"></div>
+<div class="cart-side" id="cSide">
+  <div class="ch"><h2>Panier 🛒</h2><button class="cx" onclick="closeCart()">✕</button></div>
+  <div class="cb" id="cBody"><div class="ce" id="cEmpty">🧋 Votre panier est vide</div></div>
+  <div class="cf"><div class="ct"><span>Total</span><span id="cTotal">0,00 €</span></div><button class="btn-pay" onclick="checkout()">Passer commande →</button></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Theme switcher
+  function setTheme(t) {
+    const b = document.getElementById('body');
+    b.className = t === 'dark' ? 'theme-dark' : 'theme-light';
+    document.getElementById('btnDark').classList.toggle('active', t === 'dark');
+    document.getElementById('btnLight').classList.toggle('active', t === 'light');
+  }
+
+  // Books data
+  const books = [
+    { title:"Allergic Hearts 💚", type:"Enemies to Lovers · Mariage Arrangé", desc:"Piégés par leurs familles, Talia Pérez et Lorenzo Ricci se retrouvent liés par un mariage arrangé. Talia est déterminée, vengeresse. Lorenzo, cynique et indéchiffrable. Entre passion, cicatrices et secrets, deux âmes brisées s'efforcent de trouver l'équilibre dans les bras de leur pire ennemi.", pricePdf:8.99, pricePaper:14.99, cover:"https://img.wattpad.com/cover/368311018-288-k63828.jpg", em:"💚", bg:"cp2", reads:"835", wattpad:"https://www.wattpad.com/story/368311018" },
+    { title:"Il A Vu Double 🫦", type:"Dark Romance · Mafia", desc:"Cassia Karras n'a jamais eu droit à l'erreur. Invisible par prudence, irréprochable par devoir. Mais quand il la voit, tout change. Une dark romance intense et envoûtante qui ne vous laissera aucun répit.", pricePdf:8.99, pricePaper:14.99, cover:"https://img.wattpad.com/cover/390530133-288-k210255.jpg", em:"🫦", bg:"cp1", reads:"En cours", wattpad:"https://www.wattpad.com/story/390530133" },
+    { title:"I Love You Back 🍪", type:"New Adult · Romance Campus", desc:"Samantha Hayna débarque à New York pour sa première année à l'université, prête à se reconstruire. Kyle Hood est tout ce qu'elle déteste… et tout ce qui la trouble. Entre raison et désir, le pari le plus risqué n'est pas d'aimer — mais de ne pas se perdre soi-même.", pricePdf:8.99, pricePaper:14.99, cover:"https://img.wattpad.com/cover/163426469-288-k620960.jpg", em:"🍪", bg:"cp3", reads:"2.3K", wattpad:"https://www.wattpad.com/story/163426469" },
+    { title:"Une Main Sans Bague 💍", type:"Lovers to Enemies to Lovers", desc:"Lorsque le divorce de ses parents a été prononcé, le monde de Chiara Santini s'est déchiré. Entre séduction, mort et secrets, cette romance déchirante vous plongera dans les profondeurs d'un amour que l'on croyait impossible à reconstruire.", pricePdf:9.99, pricePaper:16.99, cover:"https://img.wattpad.com/cover/364870953-288-k521086.jpg", em:"💍", bg:"cp4", reads:"1.4K", wattpad:"https://www.wattpad.com/story/364870953" }
+  ];
+
+  let curBook = 0, selFmt = 'pdf', cart = [];
+  const f = n => n.toFixed(2).replace('.', ',') + ' €';
+
+  function openModal(i) {
+    curBook = i; selFmt = 'pdf';
+    const b = books[i];
+    const p = document.getElementById('mPrev');
+    p.className = 'modal-prev ' + b.bg;
+    p.innerHTML = b.cover
+      ? `<img src="${b.cover}" style="width:75px;height:100px;object-fit:cover;border-radius:10px" onerror="this.outerHTML='${b.em}'">`
+      : b.em;
+    document.getElementById('mTitle').textContent = b.title;
+    document.getElementById('mType').textContent = b.type;
+    document.getElementById('mDesc').textContent = b.desc;
+    document.getElementById('pPdf').textContent = f(b.pricePdf);
+    document.getElementById('pPaper').textContent = f(b.pricePaper);
+    document.getElementById('opt-pdf').classList.add('sel');
+    document.getElementById('opt-paper').classList.remove('sel');
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+  function closeModalOut(e) { if (e.target.id === 'modalOverlay') closeModal(); }
+  function selOpt(fmt) {
+    selFmt = fmt;
+    document.getElementById('opt-pdf').classList.toggle('sel', fmt === 'pdf');
+    document.getElementById('opt-paper').classList.toggle('sel', fmt === 'paper');
+  }
+  function addToCart() {
+    const b = books[curBook];
+    const price = selFmt === 'pdf' ? b.pricePdf : b.pricePaper;
+    cart.push({ title: b.title, format: selFmt === 'pdf' ? 'PDF Numérique' : 'Format Papier', price, em: b.em, bg: b.bg, id: Date.now() });
+    closeModal(); renderCart(); toast('✦ "' + b.title.slice(0,18) + '…" ajouté !');
+  }
+  function removeItem(id) { cart = cart.filter(i => i.id !== id); renderCart(); }
+  function renderCart() {
+    document.getElementById('cartBadge').textContent = cart.length;
+    document.getElementById('cTotal').textContent = f(cart.reduce((s,i) => s+i.price, 0));
+    const body = document.getElementById('cBody');
+    const empty = document.getElementById('cEmpty');
+    body.querySelectorAll('.ci').forEach(el => el.remove());
+    empty.style.display = cart.length ? 'none' : 'block';
+    cart.forEach(item => {
+      const d = document.createElement('div');
+      d.className = 'ci';
+      d.innerHTML = `<div class="ci-thumb ${item.bg}">${item.em}</div><div class="ci-inf"><div class="ci-t">${item.title}</div><div class="ci-f">${item.format}</div><div class="ci-p">${f(item.price)}</div></div><button class="ci-rm" onclick="removeItem(${item.id})">✕</button>`;
+      body.appendChild(d);
+    });
+  }
+  function openCart() { document.getElementById('cOver').classList.add('active'); document.getElementById('cSide').classList.add('open'); }
+  function closeCart() { document.getElementById('cOver').classList.remove('active'); document.getElementById('cSide').classList.remove('open'); }
+  function checkout() { if (!cart.length) { toast('🛒 Panier vide'); return; } closeCart(); alert('💳 Merci pour votre commande !\n\n→ Intégrez ici Stripe, PayPal ou votre solution de paiement.'); }
+  function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+  // Beta-lecture form → Formspree
+  document.getElementById('betaForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('betaBtn');
+    const successBox = document.getElementById('betaSuccess');
+    const errorBox = document.getElementById('betaError');
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+    successBox.style.display = 'none';
+    errorBox.style.display = 'none';
+    const data = {
+      pseudo: document.getElementById('betaPseudo').value,
+      email:  document.getElementById('betaEmail').value,
+      roman:  document.getElementById('betaRoman').value,
+      message: document.getElementById('betaMessage').value
+    };
+    try {
+      const res = await fetch('https://formspree.io/f/xvzwaywe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        successBox.style.display = 'block';
+        this.reset();
+        toast('✦ Candidature envoyée ! 🧋');
+      } else {
+        errorBox.style.display = 'block';
+      }
+    } catch(err) {
+      errorBox.style.display = 'block';
+    }
+    btn.textContent = 'Envoyer ma candidature ✦';
+    btn.disabled = false;
+  });
+  function subscribe(e) { e.preventDefault(); toast('✦ Inscription confirmée 🧋'); e.target.reset(); }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
